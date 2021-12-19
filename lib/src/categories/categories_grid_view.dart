@@ -29,6 +29,7 @@ class CategoriesGridView extends ConsumerWidget {
           ElevatedButton(
             onPressed: () {
               ref.read(factRequestProvider.notifier).setCategory(category);
+              FocusScope.of(context).unfocus();
               Navigator.of(context).pushNamed(FactView.routeName);
             },
             child: Text(category.capitalize()),
