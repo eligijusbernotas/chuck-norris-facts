@@ -1,5 +1,5 @@
-import 'package:chuck_norris_facts/src/fact/fact_request.dart';
-import 'package:chuck_norris_facts/src/fact/fact_view.dart';
+import 'package:chuck_norris_facts/src/fact/query/result/fact_query_result_view.dart';
+import 'package:chuck_norris_facts/src/fact/query/fact_query.dart';
 import 'package:flutter/material.dart';
 import 'package:chuck_norris_facts/src/utils/extensions/string.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,16 +13,16 @@ class CategoriesGridView extends ConsumerWidget {
   final List<String> categories;
 
   void _onCategoryPressed(BuildContext context, WidgetRef ref, String category) {
-    ref.read(factRequestProvider.notifier).setCategory(category);
+    ref.read(factQueryProvider.notifier).setCategory(category);
     FocusScope.of(context).unfocus();
-    Navigator.of(context).pushNamed(FactView.routeName);
+    Navigator.of(context).pushNamed(FactQueryResultView.routeName);
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GridView(
       shrinkWrap: true,
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.all(8),
       semanticChildCount: categories.length,
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 200,

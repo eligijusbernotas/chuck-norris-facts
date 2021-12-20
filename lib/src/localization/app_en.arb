@@ -18,5 +18,17 @@
   "categorySelectText": "Or choose a category",
   "@categorySelectText": {
     "description": "Text above the category selection"
+  },
+  "tryAgainText": "Retry",
+  "@tryAgainText": {
+    "description": "Text to retry a failed action"
+  },
+  "unknownErrorText": "Unknown error occurred...",
+  "@unknownErrorText": {
+    "description": "Text to display when an excpetion occurs without a message"
+  },
+  "validationEmptyText": "Cannot be empty",
+  "@validationEmptyText": {
+    "description": "Text to display when text field does not pass empty validation"
   }
 }

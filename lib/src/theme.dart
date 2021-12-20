@@ -4,6 +4,49 @@ import 'package:flutter/material.dart';
 const _baseFontFamily = 'SF Pro Text';
 
 final lightTheme = _builLightTheme();
+final darkTheme = _buildDarkThem();
+
+ThemeData _buildDarkThem() {
+  final base = ThemeData.dark();
+
+  return base.copyWith(
+    colorScheme: const ColorScheme.light().copyWith(
+      primary: AppColors.primary,
+      onPrimary: Colors.black,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        overlayColor: MaterialStateProperty.all(
+          AppColors.primary.withOpacity(.8),
+        ),
+        backgroundColor: MaterialStateProperty.all(
+          Colors.white,
+        ),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all(
+          const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+        ),
+        shape: MaterialStateProperty.all(
+          const StadiumBorder(),
+        ),
+        side: MaterialStateProperty.all(BorderSide.none),
+        backgroundColor: MaterialStateProperty.all<Color>(
+          AppColors.primary,
+        ),
+        foregroundColor: MaterialStateProperty.all(
+          Colors.white,
+        ),
+        overlayColor: MaterialStateProperty.all(
+          const Color(0x1A000000),
+        ),
+      ),
+    ),
+    primaryTextTheme: _buildTextTheme(base.primaryTextTheme),
+  );
+}
 
 ThemeData _builLightTheme() {
   final base = ThemeData.light();
