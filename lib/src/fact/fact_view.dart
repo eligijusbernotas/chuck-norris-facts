@@ -1,31 +1,24 @@
-import 'package:chopper/chopper.dart';
+import 'package:chuck_norris_facts/src/fact/fact.dart';
 import 'package:chuck_norris_facts/src/fact/fact_info_view.dart';
 import 'package:chuck_norris_facts/src/fact/fact_request.dart';
-import 'package:chuck_norris_facts/src/fact/facts_service.dart';
-import 'package:chuck_norris_facts/src/fact/fact.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:chuck_norris_facts/src/utils/extensions/string.dart';
+import 'package:chuck_norris_facts/src/fact/repositories/fact_api_repository.dart';
 import 'package:chuck_norris_facts/src/utils/builders.dart' as builders;
+import 'package:chuck_norris_facts/src/utils/extensions/string.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final factProvider = FutureProvider.autoDispose<Fact>((ref) async {
-  final service = ref.watch(factsServiceProvider);
+  final repository = ref.watch(factRespositoryProvider);
   final request = ref.watch(factRequestProvider);
-  late final Response<Fact> response;
 
   if (request.isPlainRandom) {
-    response = await service.getRandom();
+    return await repository.getRandom();
   } else if (request.isCategorySet) {
-    response = await service.getRandom(category: request.category!);
-  } else if (request.isQuerySet) {
-    response = await service.getByQuery(request.query!);
+    return await repository.getRandom(category: request.category!);
   }
 
-  if (response.isSuccessful) {
-    return response.body!;
-  }
-
-  throw Exception();
+  return await repository.getByQuery(request.query!);
 });
 
 class FactView extends ConsumerStatefulWidget {
@@ -66,7 +59,7 @@ class _FactViewState extends ConsumerState<FactView> {
                   Expanded(
                     flex: 10,
                     child: Text(
-                      'Random joke: ${factRequest.category?.capitalize() ?? factRequest.query}',
+                      '${AppLocalizations.of(context)!.randomFact}${factRequest.category?.capitalize() ?? factRequest.query}',
                       textAlign: TextAlign.center,
                       style: textTheme.headline6,
                     ),
@@ -102,8 +95,12 @@ class _FactViewState extends ConsumerState<FactView> {
                       );
                     }
                   },
-                  error: (_, __) {
+                  error: (e, __) {
                     if (currentFact != null) {
+                      final errorSnackbar = SnackBar(content: Text(e.toString()));
+
+                      ScaffoldMessenger.of(context).showSnackBar(errorSnackbar);
+
                       return FactInfoView(
                         fact: currentFact!,
                         key: Key(currentFact!.id),
@@ -117,8 +114,21 @@ class _FactViewState extends ConsumerState<FactView> {
             ),
             const Spacer(),
             OutlinedButton(
-              onPressed: () => ref.refresh(factProvider),
-              child: const Text('Another Random Joke'),
+              onPressed: factAsyncValue.whenOrNull(
+                data: (_) => () => ref.refresh(factProvider),
+                error: (_, __) => () => ref.refresh(factProvider),
+              ),
+              child: factAsyncValue.maybeWhen(
+                orElse: () => const SizedBox(
+                  height: 16,
+                  width: 16,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: Colors.white,
+                  ),
+                ),
+                data: (_) => Text(AppLocalizations.of(context)!.anotherFact),
+              ),
             ),
             const SizedBox(height: 44),
           ],

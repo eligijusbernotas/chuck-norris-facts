@@ -1,3 +1,4 @@
+import 'package:chuck_norris_facts/src/colors.dart';
 import 'package:flutter/material.dart';
 
 const _baseFontFamily = 'SF Pro Text';
@@ -10,14 +11,14 @@ ThemeData _builLightTheme() {
   return base.copyWith(
     scaffoldBackgroundColor: Colors.white,
     colorScheme: const ColorScheme.light().copyWith(
-      primary: const Color(0xFFE06437),
+      primary: AppColors.primary,
       onPrimary: Colors.black,
       background: Colors.white,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         overlayColor: MaterialStateProperty.all(
-          const Color(0x80E06437),
+          AppColors.primary.withOpacity(.8),
         ),
         backgroundColor: MaterialStateProperty.all(
           Colors.white,
@@ -34,10 +35,13 @@ ThemeData _builLightTheme() {
         ),
         side: MaterialStateProperty.all(BorderSide.none),
         backgroundColor: MaterialStateProperty.all<Color>(
-          const Color(0xFFE06437),
+          AppColors.primary,
         ),
         foregroundColor: MaterialStateProperty.all(
           Colors.white,
+        ),
+        overlayColor: MaterialStateProperty.all(
+          const Color(0x1A000000),
         ),
       ),
     ),

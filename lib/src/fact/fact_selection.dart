@@ -1,10 +1,11 @@
-import 'package:chuck_norris_facts/src/categories/categories_grid_view.dart';
-import 'package:chuck_norris_facts/src/categories/categories_provider.dart';
 import 'package:chuck_norris_facts/src/colors.dart';
+import 'package:chuck_norris_facts/src/fact/categories/categories_grid_view.dart';
+import 'package:chuck_norris_facts/src/fact/categories/categories_provider.dart';
 import 'package:chuck_norris_facts/src/fact/fact_request.dart';
 import 'package:chuck_norris_facts/src/fact/fact_view.dart';
 import 'package:chuck_norris_facts/src/fact/search_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FactSelection extends ConsumerWidget {
@@ -22,9 +23,9 @@ class FactSelection extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
             child: Column(
               children: [
-                const Text(
-                  'CHUCK NORRIS',
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.titleText,
+                  style: const TextStyle(
                     color: AppColors.primary,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
@@ -33,6 +34,7 @@ class FactSelection extends ConsumerWidget {
                 ),
                 const SizedBox(height: 24),
                 SearchTextField(
+                  placeholder: AppLocalizations.of(context)!.searchPlaceholder,
                   onSubmitted: (value) {
                     ref.read(factRequestProvider.notifier).setQuery(value);
                     FocusScope.of(context).unfocus();
@@ -40,7 +42,7 @@ class FactSelection extends ConsumerWidget {
                   },
                 ),
                 const SizedBox(height: 24),
-                const Text('Or choose a category'),
+                Text(AppLocalizations.of(context)!.categorySelectText),
                 const SizedBox(height: 24),
                 ref.watch(categoriesProvider).when(
                   data: (categories) {

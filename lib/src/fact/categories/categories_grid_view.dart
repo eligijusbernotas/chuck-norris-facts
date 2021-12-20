@@ -12,6 +12,12 @@ class CategoriesGridView extends ConsumerWidget {
 
   final List<String> categories;
 
+  void _onCategoryPressed(BuildContext context, WidgetRef ref, String category) {
+    ref.read(factRequestProvider.notifier).setCategory(category);
+    FocusScope.of(context).unfocus();
+    Navigator.of(context).pushNamed(FactView.routeName);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GridView(
@@ -27,11 +33,7 @@ class CategoriesGridView extends ConsumerWidget {
       children: [
         for (final category in categories)
           ElevatedButton(
-            onPressed: () {
-              ref.read(factRequestProvider.notifier).setCategory(category);
-              FocusScope.of(context).unfocus();
-              Navigator.of(context).pushNamed(FactView.routeName);
-            },
+            onPressed: () => _onCategoryPressed(context, ref, category),
             child: Text(category.capitalize()),
           ),
       ],

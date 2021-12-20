@@ -1,6 +1,22 @@
 {
-  "appTitle": "chuck_norris_facts",
-  "@appTitle": {
-    "description": "The title of the application"
+  "anotherFact": "Another Random Joke",
+  "@getAnotherFact": {
+    "description": "Button label for fetching a random fact"
+  },
+  "randomFact": "Random joke: ",
+  "@randomFact": {
+    "description": "Fact request info while displaying the result"
+  },
+  "titleText": "CHUCK NORRIS",
+  "@titleText": {
+    "description": "Title of the main screen"
+  },
+  "searchPlaceholder": "Search for a random joke",
+  "@searchPlaceholder": {
+    "description": "Fact search text field placeholder"
+  },
+  "categorySelectText": "Or choose a category",
+  "@categorySelectText": {
+    "description": "Text above the category selection"
   }
 }

@@ -1,7 +1,7 @@
 import 'package:chopper/chopper.dart';
-import 'package:chuck_norris_facts/src/categories/categories_service.dart';
+import 'package:chuck_norris_facts/src/fact/categories/repositories/category_api_repository.dart';
 import 'package:chuck_norris_facts/src/fact/fact.dart';
-import 'package:chuck_norris_facts/src/fact/facts_service.dart';
+import 'package:chuck_norris_facts/src/fact/repositories/fact_api_repository.dart';
 import 'package:chuck_norris_facts/src/utils/json_serializable_converter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,8 +15,8 @@ final chopperProvider = Provider<ChopperClient>((ref) {
     converter: converter,
     errorConverter: converter,
     services: [
-      CategoriesService.create(),
-      FactsService.create(),
+      CategoryApiRepository.create(),
+      FactApiRepository.create(),
     ],
   );
 });

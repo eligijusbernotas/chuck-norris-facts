@@ -1,25 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'categories_service.dart';
+part of 'category_api_repository.dart';
 
 // **************************************************************************
 // ChopperGenerator
 // **************************************************************************
 
 // ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations
-class _$CategoriesService extends CategoriesService {
-  _$CategoriesService([ChopperClient? client]) {
+class _$CategoryApiRepository extends CategoryApiRepository {
+  _$CategoryApiRepository([ChopperClient? client]) {
     if (client == null) return;
     this.client = client;
   }
 
   @override
-  final definitionType = CategoriesService;
+  final definitionType = CategoryApiRepository;
 
   @override
-  Future<Response<List<String>>> getCategories() {
+  Future<List<String>> getCategories() async {
     final $url = '/categories';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<List<String>, String>($request);
+    final response = await client.send<List<String>, String>($request);
+
+    if (response.isSuccessful) {
+      return response.body!;
+    } else {
+      throw response.error!;
+    }
   }
 }
