@@ -1,7 +1,7 @@
+import 'package:chuck_norris_facts/src/fact/query/fact_query_provider.dart';
 import 'package:chuck_norris_facts/src/fact/query/result/fact_query_result_view.dart';
-import 'package:chuck_norris_facts/src/fact/query/fact_query.dart';
-import 'package:flutter/material.dart';
 import 'package:chuck_norris_facts/src/utils/extensions/string.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CategoriesGridView extends ConsumerWidget {

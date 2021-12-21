@@ -1,4 +1,5 @@
 import 'package:chuck_norris_facts/src/fact/query/fact_query.dart';
+import 'package:chuck_norris_facts/src/fact/query/fact_query_provider.dart';
 import 'package:chuck_norris_facts/src/utils/extensions/string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

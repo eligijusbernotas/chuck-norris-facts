@@ -1,5 +1,5 @@
 import 'package:chuck_norris_facts/src/fact/fact.dart';
-import 'package:chuck_norris_facts/src/fact/query/fact_query.dart';
+import 'package:chuck_norris_facts/src/fact/query/fact_query_provider.dart';
 import 'package:chuck_norris_facts/src/fact/repositories/fact_api_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

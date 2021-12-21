@@ -1,9 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final factQueryProvider = StateNotifierProvider<FactQueryNotifier, FactQuery>((ref) {
-  return FactQueryNotifier();
-});
-
 class FactQueryNotifier extends StateNotifier<FactQuery> {
   FactQueryNotifier() : super(const FactQuery());
 

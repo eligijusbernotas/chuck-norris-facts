@@ -2,7 +2,7 @@ import 'package:chuck_norris_facts/src/colors.dart';
 import 'package:chuck_norris_facts/src/common/error_view.dart';
 import 'package:chuck_norris_facts/src/fact/categories/categories_grid_view.dart';
 import 'package:chuck_norris_facts/src/fact/categories/categories_provider.dart';
-import 'package:chuck_norris_facts/src/fact/query/fact_query.dart';
+import 'package:chuck_norris_facts/src/fact/query/fact_query_provider.dart';
 import 'package:chuck_norris_facts/src/fact/query/result/fact_query_result_view.dart';
 import 'package:chuck_norris_facts/src/fact/query/search_text_field.dart';
 import 'package:flutter/material.dart';
